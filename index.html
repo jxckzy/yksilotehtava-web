@@ -1,21 +1,21 @@
 <!doctype html>
 <html lang="fi">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lounaslista – opiskelijaravintolat</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
       rel="stylesheet"
-    >
+    />
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
       crossorigin=""
-    >
-    <link rel="stylesheet" href="css/style.css">
+    />
+    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body id="top">
     <header class="site-header">
@@ -50,7 +50,7 @@
         <form class="filters" action="#" method="get">
           <div class="wide">
             <label for="search">Hae nimellä</label>
-            <input type="search" id="search" placeholder="Esim. Myllypuro">
+            <input type="search" id="search" placeholder="Esim. Myllypuro" />
           </div>
           <div>
             <label for="city">Kaupunki</label>
@@ -70,12 +70,10 @@
           </div>
         </form>
 
-        <!-- Ravintolakortit luodaan JavaScriptillä (js/main.js) API:n datasta -->
         <ul class="restaurant-list" id="restaurant-list">
           <li><p class="message">Ladataan ravintoloita...</p></li>
         </ul>
 
-        <!-- Sivutus (nuolet ja sivunumerot) luodaan JavaScriptillä -->
         <nav class="pagination" id="pagination" aria-label="Sivutus"></nav>
       </section>
 
@@ -87,13 +85,10 @@
         </div>
 
         <div class="menu-body">
-          <!-- Päivä/viikko-valinta. JavaScript lukee valitun arvon (daily tai weekly) -->
-          <input type="radio" name="view" id="view-day" value="daily" checked>
+          <input type="radio" name="view" id="view-day" value="daily" checked />
           <label class="toggle" for="view-day">Päivä</label>
-          <input type="radio" name="view" id="view-week" value="weekly">
+          <input type="radio" name="view" id="view-week" value="weekly" />
           <label class="toggle" for="view-week">Viikko</label>
-
-          <!-- Ruokalista luodaan tähän JavaScriptillä -->
           <div id="menu-content">
             <p class="message">
               Valitse ravintola, niin ruokalista näkyy tässä.
@@ -138,7 +133,7 @@
         <form action="#" method="post">
           <div>
             <label for="login-username">Käyttäjätunnus</label>
-            <input type="text" id="login-username" name="username" required>
+            <input type="text" id="login-username" name="username" required />
           </div>
           <div>
             <label for="login-password">Salasana</label>
@@ -147,7 +142,7 @@
               id="login-password"
               name="password"
               required
-            >
+            />
           </div>
           <button class="button button-green" type="submit">Kirjaudu</button>
         </form>
@@ -167,11 +162,11 @@
               id="register-username"
               name="username"
               required
-            >
+            />
           </div>
           <div>
             <label for="register-email">Sähköposti</label>
-            <input type="email" id="register-email" name="email" required>
+            <input type="email" id="register-email" name="email" required />
           </div>
           <div>
             <label for="register-password">Salasana</label>
@@ -180,7 +175,7 @@
               id="register-password"
               name="password"
               required
-            >
+            />
           </div>
           <button class="button button-green" type="submit">
             Rekisteröidy
