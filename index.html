@@ -10,6 +10,11 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      crossorigin=""
+    />
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body id="top">
@@ -20,8 +25,9 @@
           Lounaslista
         </a>
         <nav>
-          <a href="#restaurants">Ravintolat</a>
-          <a href="#login">Suosikit</a>
+          <a href="#restaurants" id="nav-restaurants">Ravintolat</a>
+          <a href="#favorites" id="nav-favorites">Suosikit</a>
+          <a href="profile.html">Profiili</a>
         </nav>
         <a class="button button-orange" href="#login">Kirjaudu</a>
       </div>
@@ -50,17 +56,12 @@
             <label for="city">Kaupunki</label>
             <select id="city">
               <option value="">Kaikki kaupungit</option>
-              <option value="helsinki">Helsinki</option>
-              <option value="espoo">Espoo</option>
-              <option value="oulu">Oulu</option>
             </select>
           </div>
           <div>
             <label for="provider">Palveluntarjoaja</label>
             <select id="provider">
               <option value="">Kaikki tarjoajat</option>
-              <option value="sodexo">Sodexo</option>
-              <option value="compass">Compass Group</option>
             </select>
           </div>
           <div class="wide filter-buttons">
@@ -69,203 +70,42 @@
           </div>
         </form>
 
-        <ul class="restaurant-list">
-          <li class="restaurant nearest">
-            <span class="badge">Lähin sinulle · 0,4 km</span>
-            <h3>Myllypuron kampusravintola</h3>
-            <p class="provider">Sodexo</p>
-            <address>Esimerkkikatu 1, 00000 Helsinki</address>
-            <div class="restaurant-buttons">
-              <a class="button button-green" href="#menu">Näytä ruokalista</a>
-              <button class="button button-favorite on" type="button">
-                ★ Suosikki
-              </button>
-            </div>
-          </li>
-
-          <li class="restaurant">
-            <h3>Karamalmin kampusravintola</h3>
-            <p class="provider">Compass Group</p>
-            <address>Esimerkkitie 12, 02600 Espoo</address>
-            <div class="restaurant-buttons">
-              <a class="button button-outline" href="#menu">Näytä ruokalista</a>
-              <button class="button button-favorite" type="button">
-                ☆ Suosikki
-              </button>
-            </div>
-          </li>
-
-          <li class="restaurant">
-            <h3>Arabian kampusravintola</h3>
-            <p class="provider">Sodexo</p>
-            <address>Esimerkkipolku 5, 00560 Helsinki</address>
-            <div class="restaurant-buttons">
-              <a class="button button-outline" href="#menu">Näytä ruokalista</a>
-              <button class="button button-favorite" type="button">
-                ☆ Suosikki
-              </button>
-            </div>
-          </li>
-
-          <li class="restaurant">
-            <h3>Oulun kampusravintola</h3>
-            <p class="provider">Compass Group</p>
-            <address>Esimerkkiaukio 3, 90100 Oulu</address>
-            <div class="restaurant-buttons">
-              <a class="button button-outline" href="#menu">Näytä ruokalista</a>
-              <button class="button button-favorite" type="button">
-                ☆ Suosikki
-              </button>
-            </div>
-          </li>
+        <!-- Ravintolakortit luodaan JavaScriptillä (js/main.js) API:n datasta -->
+        <ul class="restaurant-list" id="restaurant-list">
+          <li><p class="message">Ladataan ravintoloita...</p></li>
         </ul>
+
+        <!-- Sivutus (nuolet ja sivunumerot) luodaan JavaScriptillä -->
+        <nav class="pagination" id="pagination" aria-label="Sivutus"></nav>
       </section>
 
       <section class="menu-box" id="menu">
         <div class="menu-header">
           <p class="small-title">Valittu ravintola</p>
-          <h2>Myllypuron kampusravintola</h2>
-          <p>Esimerkkikatu 1, 00000 Helsinki · Sodexo</p>
+          <h2 id="menu-title">Ei valittua ravintolaa</h2>
+          <p id="menu-info">Valitse ravintola listasta.</p>
         </div>
 
         <div class="menu-body">
-          <input type="radio" name="view" id="view-day" checked />
+          <!-- Päivä/viikko-valinta. JavaScript lukee valitun arvon (daily tai weekly) -->
+          <input type="radio" name="view" id="view-day" value="daily" checked />
           <label class="toggle" for="view-day">Päivä</label>
-          <input type="radio" name="view" id="view-week" />
+          <input type="radio" name="view" id="view-week" value="weekly" />
           <label class="toggle" for="view-week">Viikko</label>
 
-          <div class="day-view">
-            <h3>Maanantai 9.11.</h3>
-            <ul class="course-list">
-              <li>
-                <span
-                  >Kasvis-linssikeitto <span class="diet diet-vl">VL</span
-                  ><span class="diet diet-g">G</span></span
-                >
-                <span class="price">3,10 €</span>
-              </li>
-              <li>
-                <span
-                  >Uunilohta ja sitruunakastiketta
-                  <span class="diet diet-g">G</span
-                  ><span class="diet diet-l">L</span></span
-                >
-                <span class="price">3,10 €</span>
-              </li>
-              <li>
-                <span
-                  >Kanaa ja currykastiketta
-                  <span class="diet diet-l">L</span></span
-                >
-                <span class="price">3,10 €</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="week-view">
-            <h3>Viikko 46</h3>
-
-            <details open>
-              <summary>Maanantai 9.11.</summary>
-              <ul class="course-list">
-                <li>
-                  <span
-                    >Kasvis-linssikeitto
-                    <span class="diet diet-vl">VL</span></span
-                  >
-                  <span class="price">3,10 €</span>
-                </li>
-                <li>
-                  <span
-                    >Uunilohta ja sitruunakastiketta
-                    <span class="diet diet-g">G</span></span
-                  >
-                  <span class="price">3,10 €</span>
-                </li>
-              </ul>
-            </details>
-
-            <details>
-              <summary>Tiistai 10.11.</summary>
-              <ul class="course-list">
-                <li>
-                  <span
-                    >Jauhelihakastike ja spagetti
-                    <span class="diet diet-l">L</span></span
-                  >
-                  <span class="price">3,10 €</span>
-                </li>
-                <li>
-                  <span
-                    >Kikhernecurry <span class="diet diet-vl">VL</span></span
-                  >
-                  <span class="price">3,10 €</span>
-                </li>
-              </ul>
-            </details>
-
-            <details>
-              <summary>Keskiviikko 11.11.</summary>
-              <ul class="course-list">
-                <li>
-                  <span
-                    >Broileri-kasvissose ja riisi
-                    <span class="diet diet-g">G</span></span
-                  >
-                  <span class="price">3,10 €</span>
-                </li>
-                <li>
-                  <span
-                    >Juuressosekeitto <span class="diet diet-vl">VL</span></span
-                  >
-                  <span class="price">3,10 €</span>
-                </li>
-              </ul>
-            </details>
-
-            <details>
-              <summary>Torstai 12.11.</summary>
-              <ul class="course-list">
-                <li>
-                  <span
-                    >Possun niskaa ja perunamuusia
-                    <span class="diet diet-l">L</span></span
-                  >
-                  <span class="price">3,10 €</span>
-                </li>
-                <li>
-                  <span
-                    >Tofu-nuudeliwokki
-                    <span class="diet diet-vl">VL</span></span
-                  >
-                  <span class="price">3,10 €</span>
-                </li>
-              </ul>
-            </details>
-
-            <details>
-              <summary>Perjantai 13.11.</summary>
-              <ul class="course-list">
-                <li>
-                  <span
-                    >Kalapuikot ja perunat
-                    <span class="diet diet-m">M</span></span
-                  >
-                  <span class="price">3,10 €</span>
-                </li>
-                <li>
-                  <span>Vihreä kasvislasagne</span>
-                  <span class="price">3,10 €</span>
-                </li>
-              </ul>
-            </details>
+          <!-- Ruokalista luodaan tähän JavaScriptillä -->
+          <div id="menu-content">
+            <p class="message">
+              Valitse ravintola, niin ruokalista näkyy tässä.
+            </p>
           </div>
 
           <p class="legend">
             <span class="diet diet-l">L</span> laktoositon
             <span class="diet diet-g">G</span> gluteeniton
-            <span class="diet diet-vl">VL</span> vegaaninen
             <span class="diet diet-m">M</span> maidoton
+            <span class="diet diet-vl">VL</span> vähälaktoosinen
+            <span class="diet diet-veg">Veg</span> vegaaninen
           </p>
         </div>
       </section>
@@ -349,5 +189,10 @@
         <p>Onko sinulla jo tili? <a href="#login">Kirjaudu sisään.</a></p>
       </div>
     </div>
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      crossorigin=""
+    ></script>
+    <script type="module" src="js/main.js" defer></script>
   </body>
 </html>

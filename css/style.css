@@ -103,9 +103,18 @@ address {
 }
 
 .button-favorite {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   color: var(--muted);
-  background-color: transparent;
+  background-color: white;
   border-color: var(--border);
+}
+
+.button-favorite .star {
+  color: var(--orange);
+  font-size: 1rem;
+  line-height: 1;
 }
 
 .button-favorite.on {
@@ -252,6 +261,59 @@ select {
   margin-top: 1rem;
 }
 
+/* sivutus */
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.25rem;
+  margin-top: 1.5rem;
+}
+
+.page-button {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--green);
+  cursor: pointer;
+  background-color: transparent;
+  border: 2px solid transparent;
+  border-radius: 50%;
+}
+
+/* reuna näkyy vain, kun hiiri on painikkeen päällä */
+.page-button:hover:not(:disabled) {
+  border-color: var(--green);
+}
+
+.page-button.current {
+  color: white;
+  background-color: var(--green);
+}
+
+.page-button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* "..." ei ole painike */
+.page-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--muted);
+}
+
+/* valittu ravintola */
+.restaurant.selected {
+  border-left: 6px solid var(--green);
+}
+
 /* lähin ravintola */
 .nearest {
   background-color: var(--light-orange);
@@ -322,22 +384,10 @@ input:checked + .toggle {
   background-color: var(--green);
 }
 
-/* päivän lista */
-.week-view {
-  display: none;
-}
-
-#view-week:checked ~ .day-view {
-  display: none;
-}
-
-#view-week:checked ~ .week-view {
-  display: block;
-}
-
 /* annokset */
 .course-list li {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 1rem;
   padding: 0.75rem 0;
@@ -348,10 +398,20 @@ input:checked + .toggle {
   border-bottom: none;
 }
 
+.course-list li > span:first-child {
+  flex: 1 1 12rem;
+}
+
 .price {
+  margin-left: auto;
   font-weight: 700;
   white-space: nowrap;
   color: var(--green);
+}
+
+/* latausviesti ja virheilmoitus */
+.message {
+  color: var(--muted);
 }
 
 /* viikon päivät */
@@ -373,6 +433,11 @@ details .course-list {
   padding: 0 1rem;
 }
 
+/* päivät jotka ovat jo menneet */
+.past-day {
+  opacity: 0.6;
+}
+
 /* ruokavaliomerkit */
 .diet {
   display: inline-block;
@@ -380,6 +445,8 @@ details .course-list {
   padding: 0 0.4rem;
   font-size: 0.75rem;
   font-weight: 700;
+  color: var(--muted);
+  background-color: #ece8dc;
   border-radius: 6px;
 }
 
@@ -401,6 +468,11 @@ details .course-list {
 .diet-m {
   color: #4b2a78;
   background-color: #ebe0f7;
+}
+
+.diet-veg {
+  color: #7a2e1d;
+  background-color: #fbe0d8;
 }
 
 .legend {
@@ -430,11 +502,41 @@ details .course-list {
   align-items: center;
   justify-content: center;
   min-height: 320px;
+  height: 360px;
   font-weight: 600;
   color: var(--dark-green);
   background-color: #d4e6db;
   border: 2px dashed var(--green);
   border-radius: 12px;
+}
+
+.map-pin-icon {
+  background: transparent;
+  border: none;
+}
+
+.map-pin {
+  position: relative;
+  display: block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  border: 2.5px solid #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+.map-pin-red {
+  background-color: #d93829;
+}
+
+.map-pin-green {
+  background-color: var(--green, #2f6f4e);
+}
+
+.map-pin-orange {
+  background-color: var(--orange, #f2a541);
+  transform: rotate(-45deg) scale(1.12);
 }
 
 /* alaosa */
@@ -498,6 +600,16 @@ footer a {
   text-decoration: none;
 }
 
+/* pienet näytöt: pienemmät sivupainikkeet */
+@media (max-width: 480px) {
+  .page-button,
+  .page-dots {
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.9rem;
+  }
+}
+
 /* media leviämmille screeneille */
 @media (min-width: 800px) {
   .layout {
@@ -506,5 +618,110 @@ footer a {
 
   .hero h1 {
     font-size: 2.5rem;
+  }
+}
+
+/* profiilisivu */
+.back-link {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.profile-layout {
+  display: grid;
+  gap: 1.5rem;
+  padding: 1rem 0 2rem;
+}
+
+.card {
+  padding: 1.5rem;
+  background-color: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.card h2 {
+  font-size: 1.25rem;
+}
+
+.profile-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.profile-form .button {
+  justify-self: start;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 8rem;
+  height: 8rem;
+  margin: 0 auto 1.5rem;
+  overflow: hidden;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--dark-green);
+  background-color: var(--orange);
+  border-radius: 50%;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  display: block;
+}
+
+input[type='file'] {
+  width: 100%;
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+
+.password-fields {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+legend {
+  padding: 0 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--dark-green);
+}
+
+.hint {
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.form-message {
+  min-height: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.form-message.success {
+  color: var(--green);
+}
+
+.form-message.error {
+  color: #a12d2d;
+}
+
+@media (min-width: 800px) {
+  .profile-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    align-items: start;
   }
 }

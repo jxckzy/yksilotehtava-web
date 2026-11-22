@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="fi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oma profiili – Lounaslista</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body id="top">
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="logo" href="index.html">
+          <span class="logo-mark"></span>
+          Lounaslista
+        </a>
+        <nav>
+          <a href="index.html#restaurants">Ravintolat</a>
+          <a href="profile.html" aria-current="page">Profiili</a>
+        </nav>
+        <a class="button button-orange" href="index.html">Kirjaudu ulos</a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="container">
+        <h1>Oma profiili</h1>
+        <p>
+          Muokkaa tietojasi, vaihda profiilikuva ja valitse suosikkiravintolasi.
+        </p>
+      </div>
+    </section>
+
+    <main class="container">
+      <a class="back-link" href="index.html#restaurants"
+        >← Takaisin ravintoloihin</a
+      >
+
+      <div class="profile-layout">
+        <!-- Profiilikuva -->
+        <section class="card" aria-labelledby="avatar-title">
+          <h2 id="avatar-title">Profiilikuva</h2>
+
+          <!-- JavaScript näyttää tässä myöhemmin käyttäjän kuvan -->
+          <div class="avatar" id="avatar">
+            <span id="avatar-initials">K</span>
+          </div>
+
+          <form
+            class="profile-form"
+            id="avatar-form"
+            action="#"
+            method="post"
+            enctype="multipart/form-data"
+          >
+            <div>
+              <label for="avatar-file">Valitse kuva</label>
+              <input
+                type="file"
+                id="avatar-file"
+                name="avatar"
+                accept="image/*"
+                required
+              />
+              <p class="hint">Kuvatiedosto, esimerkiksi JPG tai PNG.</p>
+            </div>
+            <button class="button button-green" type="submit">
+              Tallenna kuva
+            </button>
+            <p class="form-message" id="avatar-message" role="status"></p>
+          </form>
+        </section>
+
+        <!-- Omat tiedot -->
+        <section class="card" aria-labelledby="details-title">
+          <h2 id="details-title">Omat tiedot</h2>
+
+          <form class="profile-form" id="profile-form" action="#" method="post">
+            <div>
+              <label for="profile-username">Käyttäjätunnus</label>
+              <input
+                type="text"
+                id="profile-username"
+                name="username"
+                autocomplete="username"
+                required
+              />
+            </div>
+
+            <div>
+              <label for="profile-email">Sähköposti</label>
+              <input
+                type="email"
+                id="profile-email"
+                name="email"
+                autocomplete="email"
+                required
+              />
+            </div>
+
+            <div>
+              <label for="profile-favorite">Suosikkiravintola</label>
+              <select id="profile-favorite" name="favorite"></select>
+            </div>
+
+            <fieldset class="password-fields">
+              <legend>Vaihda salasana</legend>
+              <p class="hint">
+                Jätä kentät tyhjiksi, jos et halua vaihtaa salasanaa.
+              </p>
+              <div>
+                <label for="profile-password">Uusi salasana</label>
+                <input
+                  type="password"
+                  id="profile-password"
+                  name="password"
+                  autocomplete="new-password"
+                />
+              </div>
+              <div>
+                <label for="profile-password-again"
+                  >Uusi salasana uudelleen</label
+                >
+                <input
+                  type="password"
+                  id="profile-password-again"
+                  name="password-again"
+                  autocomplete="new-password"
+                />
+              </div>
+            </fieldset>
+
+            <button class="button button-green" type="submit">
+              Tallenna muutokset
+            </button>
+            <p class="form-message" id="profile-message" role="status"></p>
+          </form>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <p>LounasLista</p>
+      <p>
+        Data:
+        <a
+          href="https://media2.edu.metropolia.fi/restaurant"
+          target="_blank"
+          rel="noopener"
+          >Metropolia API</a
+        >
+      </p>
+    </footer>
+    <script type="module" src="js/profile.js"></script>
+  </body>
+</html>
