@@ -14,10 +14,22 @@ Lounaslista on toteutettu osana korkeakouluopintoja Web-sovelluskehitys-kurssill
 
 ## Validoinnit ja kuvakaappaukset
 
-- HTML-validointi: [Kuvakaappaus 1](./validation/HTML_validation_1.png), [kuvakaappaus 2](./validation/HTML_validation_2.png)
-- CSS-validointi: [Kuvakaappaus](./validation/CSS_validation.png)
-- Lighthouse-tarkistus: [Kuvakaappaus](./validation/Lighthouse_validation.png)
+### HTML-validointi
+
+![HTML-validoinnin kuvakaappaus 1](./validation/HTML_validation_1.png)
+
+![HTML-validoinnin kuvakaappaus 2](./validation/HTML_validation_2.png)
+
+### CSS-validointi
+
+![CSS-validoinnin kuvakaappaus](./validation/CSS_validation.png)
+
+### Lighthouse-tarkistus
+
+![Lighthouse-tarkistuksen kuvakaappaus](./validation/Lighthouse_validation.png)
 
 ## Tulevaisuuden parannukset
 
-Haluan laajentaa sovelluksen ominaisuuksia ja käyttömahdollisuuksia. Tulevaisuudessa haluan lisätä sovellukseen **Poista tili** -painikkeen.
+- Laajentaa sovelluksen ominaisuuksia ja käyttömahdollisuuksia
+- Lisätä sovellukseen **Poista tili** -painikkeen
+- Tehdä sovelluksesta itsenäinen versio, joka voi ladata puhelimeen ja käyttää suoraan mistä tahansa paikasta.
